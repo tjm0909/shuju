@@ -1,0 +1,1182 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据组工具集</title>
+	<link rel="shortcut icon" href="https://www.10086.cn/favicon.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+
+	<style>
+		span{cursor:pointer;color: rgb(153, 200, 242)}
+		span{font-size:22px;}
+		marquee{cursor:pointer;}
+		.box{
+			display:flex;
+			justify-content:center;
+			/* background-image:url(https://img.zcool.cn/community/01fb705c90b77aa801214168750662.gif); */
+		}
+		.contentbox{
+			margin-left:100px
+		}
+		 
+		#login { 
+		width:350px; 
+		height:250px; 
+		border:1px solid #ccc; 
+		position:absolute; 
+		display:block; 
+		z-index:9999; 
+		background:#fff; 
+		} 
+		#login h2 { 
+		height:40px; 
+		line-height:40px; 
+		text-align:center; 
+		font-size:14px; 
+		letter-spacing:1px; 
+		color:#666; 
+		background: repeat-x; 
+		margin:0; 
+		padding:0; 
+		border-bottom:1px solid #ccc; 
+		cursor:move; 
+		} 
+		#login h2 a { 
+		float:right; 
+		position:relative; 
+		top:0px; 
+		right:0px; 
+		height:36px;
+		cursor:pointer; 
+		color:burlywood;
+		}
+		#login h2 a:hover {background-color: red}
+		#login div.info { 
+		padding:10px 0 5px 0; 
+		text-align:center; 
+		color:maroon; 
+		} 
+		#login div.user, #login div.pass { 
+		font-size:14px; 
+		color:#666; 
+		padding:5px 0; 
+		text-align:center; 
+		} 
+		#login input.text { 
+		width:200px; 
+		height:25px; 
+		border:1px solid #ccc; 
+		background:#fff; 
+		font-size:14px; 
+		} 
+		#login .button { 
+		text-align:center; 
+		padding:15px 0; 
+		} 
+		#login input.submit { 
+		width:107px; 
+		height:30px; 
+		background:no-repeat; 
+		border:none; 
+		cursor:pointer; 
+		background-color:burlywood;
+		} 
+		#login .other { 
+		text-align:right; 
+		padding:15px 10px; 
+		color:#666; 
+		} 
+
+		#CONNECT_TYPE { 
+		width:350px; 
+		height:250px; 
+		border:1px solid #ccc; 
+		position:absolute; 
+		display:block; 
+		z-index:9999; 
+		background:#fff; 
+		} 
+		#CONNECT_TYPE h2 { 
+		height:40px; 
+		line-height:40px; 
+		text-align:center; 
+		font-size:14px; 
+		letter-spacing:1px; 
+		color:#666; 
+		background: repeat-x; 
+		margin:0; 
+		padding:0; 
+		border-bottom:1px solid #ccc; 
+		cursor:move; 
+		} 
+		#CONNECT_TYPE h2 a { 
+		float:right; 
+		position:relative; 
+		top:0px; 
+		right:0px; 
+		height:36px;
+		cursor:pointer; 
+		color:burlywood;
+		}
+		#CONNECT_TYPE h2 a:hover {background-color: red}
+		#CONNECT_TYPE div.info { 
+		padding:10px 0 5px 0; 
+		text-align:center; 
+		color:maroon; 
+		} 
+		#CONNECT_TYPE div.user, #CONNECT_TYPE div.pass { 
+		font-size:14px; 
+		color:#666; 
+		padding:5px 0; 
+		text-align:center; 
+		} 
+		#CONNECT_TYPE input.text { 
+		width:200px; 
+		height:25px; 
+		border:1px solid #ccc; 
+		background:#fff; 
+		font-size:14px; 
+		} 
+		#CONNECT_TYPE .button { 
+		text-align:center; 
+		padding:15px 0; 
+		} 
+		#CONNECT_TYPE input.submit { 
+		width:107px; 
+		height:30px; 
+		background:no-repeat; 
+		border:none; 
+		cursor:pointer; 
+		background-color:burlywood;
+		} 
+		#CONNECT_TYPE .other { 
+		text-align:right; 
+		padding:15px 10px; 
+		color:#666; 
+		} 
+		
+				#qn { 
+		width:350px; 
+		height:250px; 
+		border:1px solid #ccc; 
+		position:absolute; 
+		display:block; 
+		z-index:9999; 
+		background:#fff; 
+		} 
+		#qn h2 { 
+		height:40px; 
+		line-height:40px; 
+		text-align:center; 
+		font-size:14px; 
+		letter-spacing:1px; 
+		color:#666; 
+		background: repeat-x; 
+		margin:0; 
+		padding:0; 
+		border-bottom:1px solid #ccc; 
+		cursor:move; 
+		} 
+		#qn h2 a { 
+		float:right; 
+		position:relative; 
+		top:0px; 
+		right:0px; 
+		height:36px;
+		cursor:pointer; 
+		color:burlywood;
+		}
+		#qn h2 a:hover {background-color: red}
+		#qn div.info { 
+		padding:10px 0 5px 0; 
+		text-align:center; 
+		color:maroon; 
+		} 
+		#qn div.user, #qn div.pass { 
+		font-size:14px; 
+		color:#666; 
+		padding:5px 0; 
+		text-align:center; 
+		} 
+		#qn input.text { 
+		width:200px; 
+		height:25px; 
+		border:1px solid #ccc; 
+		background:#fff; 
+		font-size:14px; 
+		} 
+		#qn .button { 
+		text-align:center; 
+		padding:15px 0; 
+		} 
+		#qn input.submit { 
+		width:107px; 
+		height:30px; 
+		background:no-repeat; 
+		border:none; 
+		cursor:pointer; 
+		background-color:burlywood;
+		} 
+		#qn .other { 
+		text-align:right; 
+		padding:15px 10px; 
+		color:#666; 
+		} 
+		
+				#zsstarts { 
+		width:350px; 
+		height:250px; 
+		border:1px solid #ccc; 
+		position:absolute; 
+		display:block; 
+		z-index:9999; 
+		background:#fff; 
+		} 
+		#zsstarts h2 { 
+		height:40px; 
+		line-height:40px; 
+		text-align:center; 
+		font-size:14px; 
+		letter-spacing:1px; 
+		color:#666; 
+		background: repeat-x; 
+		margin:0; 
+		padding:0; 
+		border-bottom:1px solid #ccc; 
+		cursor:move; 
+		} 
+		#zsstarts h2 a { 
+		float:right; 
+		position:relative; 
+		top:0px; 
+		right:0px; 
+		height:36px;
+		cursor:pointer; 
+		color:burlywood;
+		}
+		#zsstarts h2 a:hover {background-color: red}
+		#zsstarts div.info { 
+		padding:10px 0 5px 0; 
+		text-align:center; 
+		color:maroon; 
+		} 
+		#zsstarts div.user, #zsstarts div.pass { 
+		font-size:14px; 
+		color:#666; 
+		padding:5px 0; 
+		text-align:center; 
+		} 
+		#zsstarts input.text { 
+		width:200px; 
+		height:25px; 
+		border:1px solid #ccc; 
+		background:#fff; 
+		font-size:14px; 
+		} 
+		#zsstarts .button { 
+		text-align:center; 
+		padding:15px 0; 
+		} 
+		#zsstarts input.submit { 
+		width:107px; 
+		height:30px; 
+		background:no-repeat; 
+		border:none; 
+		cursor:pointer; 
+		background-color:burlywood;
+		} 
+		#zsstarts .other { 
+		text-align:right; 
+		padding:15px 10px; 
+		color:#666; 
+		} 
+		
+		
+	</style>
+</head>
+<!-- <body background="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fphoto%2F2011-10-26%2Fenterdesk.com-2521675449682EECDF597B13DDA19B2D.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665800096&t=1c9aacd1f7f87f5a6cf2ec48a05ae00f" >-->
+<body background="bg.png">
+    <center>    	
+		<!-- <form  id="cj" action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" target="print_popup" onsubmit="cjcs()"> -->
+			<!-- <div style="display:none;">
+				<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" >
+				<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" >
+				<input type="text" name="needTrans" id="needTrans" value="N" >
+				<input type="text" name="param" id="param" value='{"iptvAccount":"12345678901d001","id":"clearIptv"}' >				
+			</div> -->
+			<input type="button" onclick="login()" style="height:30px;width:160px;text-align:center;cursor:pointer" value="测试登录信息加载" />
+			<input id="json" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="JSON报文格式化工具" onclick="window.open('https://wejson.cn/')" />
+			<input hidden id="json" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="未转派工单明细" onclick="window.open('http://tj-ming.gitee.io/gongjuji/zzy.html')" />
+			<input hidden id="updatestart" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="接单工号状态修改" />
+			<input hidden id="wzp" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="zzy未转派明细" />
+			<input id="update" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="IPTV密码修改" />
+			<input id="add" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="用户信息查询" />
+			<input id="QueryName" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="分光器信息查询" />
+            <input type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="专家支撑待受理" onclick="window.open('http://tj-ming.gitee.io/sjzc/zxzs.html')" />
+            <input type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="升级支撑工单台账登记" onclick="window.open('https://f.kdocs.cn/ksform/w/write/5a0usUoQ')" />
+			<input hidden id="myd" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="昨日满意度导出" onclick="window.open('http://10.229.19.44:9081/report_eda/report/ydbb/manyiduxinji?username=hndw_tanjunming&roleId=658713&reqSrc=iom&token=8ca90b0a-23d1-4a17-a06f-e1280a3a137a&language=zh&privCode=manyiduxinji')" />
+			<input hidden id="clz" type="button" style="height:30px;width:160px;text-align:center;cursor:pointer" value="日处理中统计" />
+		<!-- </form> -->
+		<div style="margin-top: 10px;">
+				<center>
+					<span>同步FTTR升级给宽综</span><br>
+					<input type="text"  autocomplete="off" id="kdzh" style="height:25px" size="20px" placeholder="请输入宽带账号">     
+					<input type="button" value="同步" style="height:33px;cursor:pointer" onclick="tsfttr()">
+				</center>
+		</div>
+	</center>
+	<div class="box">		
+		<div>
+			<form action="http://10.154.3.30:9990/wfm-web-kt/common/invokeRemoteAction/invoke.do" onsubmit="return test2()"  target="print_popup" >
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="changeServlet" hidden>
+					<input type="text" name="methodName" id="methodName" value="selecImsInfo" hidden>
+					<input type="text" id="par11" value='{"serviceName":"changeServlet","method":"selecImsInfo","p0":"\"com.ztesoft.toutils.ToutilsService\"","p1":"\"selecImsInfo\"","p2":"{\"id\":\"' hidden>
+					<span>IMS固话密码查询</span><br><input type="text"  autocomplete="off" id="par22" style="height:25px" size="20px" placeholder="请输入固话号码">
+					<input type="text" id="par33" value='\",\"staffId\":4121242}"}' hidden>   
+					<input type="text" name="param" id="param2" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer"> 
+				</center>        
+			</form>
+				
+			
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" target="print_popup" onsubmit="return test5()">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="q1" value='{"account":"' hidden>
+					<span>CRM信息查询</span><br><input type="text" autocomplete="off" id="q2" style="height:25px" size="20px" placeholder="请输入宽带账号">
+					<input type="text" id="q3" value='","id":"broadBandDetail"}' hidden>   
+					<input type="text" name="param" id="param5" hidden >           
+					<input type="submit"  id="submit" value="查询" style="height:33px;cursor:pointer"> 
+				</center>        
+			</form>	
+			
+			<!--<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test7()"  method="post" target="iframe" onsubmit="return false;">-->
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test7()"  target="print_popup">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="m111" value='{"iptvAccount":"' hidden>
+					<span>radius认证记录</span><br><input type="text" autocomplete="off" id="m222" style="height:25px" size="20px" placeholder="请输入查询的IPTV账号">
+					<input type="text" id="m333" value='","id":"iptvAuth"}' hidden>
+					<input type="text" name="param" id="param444" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+		</div>
+		
+		<div style="margin-left:5px">
+			<form action="http://10.154.3.30:9990/wfm-web-kt/common/invokeRemoteAction/invoke.do" onsubmit="return test3()"  target="print_popup" >
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="changeServlet" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeRemoteFunChangeIMSPWD" hidden>
+					<input type="text" id="par111" value='{"serviceName":"changeServlet","method":"invokeRemoteFunChangeIMSPWD","p0":"\"com.ztesoft.toutils.ToutilsService\"","p1":"\"invokeRemoteFunChangeIMSPWD\"","p2":"{\"staffId\":4121242,\"accNbr\":\"' hidden>
+					<span>IMS固话密码重置</span><br><input type="text" autocomplete="off" id="par222" style="height:25px" size="20px" placeholder="请输入固话号码">
+					<input type="text" id="par333" value='\",\"falgImsType\":\"IMS\",\"sendXmlId\":\"2019120602L\",\"templateId\":\"2017051802L\"}"}' hidden>   
+					<input type="text" name="param" id="param3" hidden >           
+					<input type="submit" value="重置" style="height:33px;cursor:pointer"> 
+				</center>        
+			</form>
+				
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test4()"  target="print_popup" >
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="qryPhoneBlance" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="m1" value='{"SERIAL_NUMBER":"' hidden>
+					<span>手机话费余额查询</span><br><input type="text" autocomplete="off" id="m2" style="height:25px" size="20px" placeholder="请输入查询的号码">
+					<input type="text" id="m3" value='","accNbr":"' hidden>
+					<input type="text" id="m4" value='"}' hidden>   
+					<input type="text" name="param" id="param4" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+			
+			<!--<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test6()"  method="post" target="iframe" onsubmit="return false;">-->
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test6()"  target="print_popup">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="m11" value='{"iptvAccount":"' hidden>
+					<span>radius解绑</span><br><input type="text" autocomplete="off" id="m22" style="height:25px" size="20px" placeholder="请输入解绑的IPTV账号">
+					<input type="text" id="m33" value='","id":"clearIptv"}' hidden>
+					<input type="text" name="param" id="param44" hidden >           
+					<input type="submit" value="解绑" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+		</div>	
+
+		<div style="margin-left:5px">
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test()"  target="print_popup" >
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="pretreamService" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbilityMethod" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="par1" value='{"keys":"result,Body,clearOnlineResponse,clearOnlineReturn,result","condition":"0","invokeParam":{"access_token":"","method":"clearOnline","version":"1.0","content":{"username":"' hidden>
+					<span>宽带清除在线记录</span><br><input type="text"  autocomplete="off" id="par2" style="height:25px" size="20px" placeholder="请输入宽带账号">
+					<input type="text" id="par3" value='","servicetype":"301"}},"messageKey":"description"}' hidden>   
+					<input type="text" name="param" id="param1" hidden >           
+					<input type="submit" value="清除" style="height:33px;cursor:pointer"> 
+				</center>        
+			</form>	
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test8()"  target="print_popup" >
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="m1111" value='{"iptvAccount":"' hidden>
+					<span>IPTV计费查询</span><br><input type="text" autocomplete="off" id="m2222" style="height:25px" size="20px" placeholder='"status":"0"为没停机'>
+					<input type="text" id="m3333" value='","id":"iptvInfo"}' hidden>
+					<input type="text" name="param" id="param4444" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+			
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return k()"  target="print_popup">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="k1" value='{"username":"' hidden>
+					<span>宽带认证错误情况</span><br><input type="text" autocomplete="off" id="k2" style="height:25px" size="20px" placeholder="请输入宽带账号">
+					<input type="text" id="k3" value='","id":"lastThree"}' hidden>
+					<input type="text" name="param" id="k4" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+			
+		</div>	
+		
+		<div style="margin-left:5px">
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test9()"  target="print_popup">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="m11111" value='{"phoneNumber":"' hidden>
+					<span>IPTV大视频关系查询</span><br><input type="text" autocomplete="off" id="m22222" style="height:25px" size="20px" placeholder='"issuspend":"1"为没暂停'>
+					<input type="text" id="m33333" value='","id":"iptvOrder"}' hidden>
+					<input type="text" name="param" id="param44444" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+			
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return test10()"  target="print_popup">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="ottpar1" value='{"phoneNumber":"' hidden>
+					<span>OTT关系查询</span><br><input type="text" autocomplete="off" id="ottpar2" style="height:25px" size="20px" placeholder='"issuspend":"1"为没暂停'>
+					<input type="text" id="ottpar3" value='","id":"ottOrder"}' hidden>
+					<input type="text" name="param" id="ottpar4" hidden >           
+					<input type="submit" value="查询" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+			
+			<form action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return synchronization()" target="print_popup">
+				<center>
+					<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+					<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+					<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+					<input type="text" id="synchronization1" value='{"iptvAccount":"' hidden>
+					<span>IPTV状态同步</span><br><input type="text" autocomplete="off" id="synchronization2" style="height:25px" size="20px" placeholder="请输入IPTV账号">
+					<input type="text" id="synchronization3" value='","id":"iptvSync"}' hidden>
+					<input type="text" name="param" id="synchronization4" hidden >           
+					<input type="submit" value="同步" style="height:33px;cursor:pointer">
+				</center>        
+			</form>
+			
+		</div>
+		
+	</div>
+	<center>
+		<div id="marquee" name="marquee" height="22px" hidden>
+			<marquee style="width:250px;color:burlywood;font-size:22px;" id="mar">双击复制文本！</marquee>
+		</div>
+	</center>
+	<a href="#foot" id="aa" name="aa"></a>	
+	<div class="box">
+		<div hidden>
+			<span style="font-size:26px">装机</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/机顶盒问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/宽带问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/IMS固话</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/摄像头</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/全屋WIFI</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/终端系统管理问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/工单流程问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/资源问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/装维技能问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/装维对流程不熟悉</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/弱光修障</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/速率不一致修障</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">装机/账号频繁中断修障</span><br><br>
+		</div>
+		<div  class="contentbox" hidden>
+			<span style="font-size:26px">维护</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/机顶盒问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/宽带问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/IMS固话</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/摄像头</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/全屋WIFI</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/终端系统管理问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/工单流程问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/资源问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/装维技能问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/装维对流程不熟悉</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/弱光修障</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/速率不一致修障</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">维护/账号频繁中断修障</span><br><br>
+		</div>
+		<div class="contentbox" hidden>
+			<span style="font-size:26px">整治</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/机顶盒问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/宽带问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/IMS固话</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/摄像头</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/全屋WIFI</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/终端系统管理问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/工单流程问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/资源问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/装维技能问题</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/装维对流程不熟悉</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/弱光修障</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/速率不一致修障</span><br><br>
+			<span onDblClick="copyInnerTextOfCell(event)">整治/账号频繁中断修障</span><br><br>
+		</div>		
+	</div>
+	<div id="r" style="display:none;">
+		<center>
+			<span class="res">请求返回结果：</span><br>
+			<iframe name="iframe" width="880" height="80" id="iframe" style=" background-color:white;"></iframe>
+		</center>
+		<a name="foot" id="foot"></a>
+	</div>
+	
+	<div id="login" style="display:none;">
+		<h2>IPTV密码修改<a class="close" id="cupiptv">&nbsp;&nbsp;❌&nbsp;&nbsp;</a></h2>
+		<form id="loginForm" action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return iptv()"  target="print_popup">
+			<div class="info"></div>			
+			<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+			<input type="text" name="methodName" id="methodName" value="invokeAbility4Cid" hidden>
+			<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+			<input type="text" id="iptvpar1" value='{"iptvAccount":"' hidden>			
+			<div class="user">帐 号：<input id="iptvpar2" autocomplete="off" placeholder="请输入IPTV账号" type="text"  class="text" /></div>			
+			<input type="text" id="iptvpar3" value='","password":"' hidden>			
+			<div class="pass">密 码：<input id="iptvpar4" autocomplete="off" placeholder="请输入开户单IPTV密码" type="text"  class="text" /></div>			
+			<input type="text" id="iptvpar5" value='","id":"setIptvPwd"}' hidden>
+			<input type="text" name="param" id="iptvpar" hidden >           
+			<div class="button"><input type="submit" name="sub" class="submit" value="修改" /></div>
+		</form>
+	</div>
+	
+	<div id="zsstarts" style="display:none;z-index:2">
+		<h2>在线助手接单状态修改<a class="close" id="nosta">&nbsp;&nbsp;❌&nbsp;&nbsp;</a></h2>
+		<form id="staForm" action="https://10.229.19.32:9084/isa-web-ps/common/invokeRemoteAction/invoke.do" onsubmit="return sta()"  target="print_popup">
+			<div class="info"></div>			
+			<input type="text" name="serviceName" id="serviceName" value="prWorkOrderManagerService" hidden>
+			<input type="text" name="methodName" id="methodName" value="updateImUserStatus" hidden>
+			<input type="text" id="startpar1" value='{"serviceName":"prWorkOrderManagerService","method":"updateImUserStatus","p0":"{\"status\":\"' hidden>			
+			<div class="user" style="position: absolute;z-index:1;margin-left:18%"">状态：
+				<select class="singleSelect" id="startpar2" style="width:180px">
+					<option value="">--请选择状态--</option>
+					<option value="1">示闲</option>
+					<option value="2">示忙</option>
+					<option value="3">离线</option>
+				</select>
+			</div></br></br>
+			<input type="text" id="startpar3" value='\",\"userName\":\"' hidden>
+			<div class="user" style="position: absolute;z-index:1;margin-left:18%">人员：
+				<select class="singleSelect" id="startpar4" style="width:180px">
+					<option value="">--请选择工号--</option>
+					<option value="hndw_lingchen">一班凌晨</option>
+					<option value="hndw_yinbin">一班尹彬</option>
+					<option value="hndw_yangliu">一班杨柳</option>
+					<option value="hndw_jiangsida">一班蒋思达</option>
+					<option value="hndw_chenhengguo">一班陈恒国</option>
+					<option value="hndw_zhanyuwei">一班湛雨微</option>
+					<option value="hndw_zhouruwei">一班周汝薇</option>
+					<option value="hndw_liuhui">一班刘慧</option>
+					<option value="hndw_ganxiaowen">一班甘晓文</option>
+					<option value="hndw_xiaoyuqi">一班肖宇琦</option>
+					<option value="hndw_luohaowen">一班罗浩文</option>
+					<option value="hndw_ouyangping">一班欧阳平</option>
+					<option value="hndw_liuziliang">一班刘籽良</option>
+					<option value="hndw_liusiyu">一班刘思雨</option>
+					<option value="hndw_luoxin">一班罗鑫</option>
+					<option value="hndw_luowenbiao">一班罗文彪</option>
+					<option value="hndw_husaijun">一班胡赛俊</option>
+					<option value="hndw_tangqing">一班汤青</option>
+					<option value="hndw_liaozihao">一班廖子豪</option>
+					<option value="hndw_zhoujieya">一班周洁雅</option>
+					<option value="hndw_zhenglei">一班郑雷</option>
+					<option value="hndw_liangqin">一班梁琴</option>
+					<option value="hndw_huqian1">一班胡倩</option>
+                    <option value="hndw_lujiayi">一班芦嘉艺</option>
+					<option value="hndw_zhouyao">二班周耀</option>
+					<option value="hndw_liuyang">二班刘洋</option>
+					<option value="hndw_jianglijuan">二班蒋丽娟</option>
+					<option value="hn_longduan">二班龙端</option>
+					<option value="hndw_luowencong">二班罗文聪</option>
+					<option value="hn_yanjiangrui">二班颜江蕊</option>
+					<option value="hndw_zhoujia">二班周佳</option>
+					<option value="hndw_zhongwei">二班钟炜</option>
+					<option value="hndw_yinshuaihao">二班尹帅豪</option>
+					<option value="hndw_zhongzhe">二班钟哲</option>
+					<option value="hndw_wutianyi">二班吴添一</option>
+					<option value="hndw_pengjiazhuo">二班彭佳卓</option>
+					<option value="hndw_shenzeqin">二班谌泽勤</option>
+					<option value="hndw_guochan">二班郭婵</option>
+					<option value="hndw_zhangjingfeng">二班张静峰</option>
+					<option value="hndw_ouyangjiangyan">二班欧阳江滟</option>
+					<option value="hndw_aiyurong">二班艾钰容</option>
+					<option value="hndw_yiqi">二班易奇</option>
+					<option value="hndw_huangmin">二班黄敏</option>
+					<option value="hndw_xuwenjing">二班苏文静</option>
+					<option value="hndw_lizhihao">二班李桎豪</option>
+                    <option value="hndw_yangshuoqi">二班杨烁琪</option>
+                    <option value="hndw_yangjunhua">二班杨俊华</option>
+                    <option value="hndw_zhaozhuoyang">二班赵周杨</option>
+					<option value="hndw_quna">屈娜</option>
+				</select>
+			</div></br></br>
+			<div class="user">密 码：<input id="qrpass" style="width:175px;border-radius: 4.5px;" autocomplete="off" placeholder="请输入密码" type="password"  class="text" /></div>		
+			<input type="text" id="startpar5" value='\",\"deviceId\":\"07c64569-5433-4db4-a776-226459f80a09\"}"}' hidden>
+			<input type="text" name="param" id="startpar" hidden >     
+			<div class="button"><input type="submit" name="sub" class="submit" value="修改" /></div>
+		</form>
+	</div>
+	
+	<div id="CONNECT_TYPE" style="display:none;">
+		<h2>用户信息查询<a class="close" id="cCONNECT_TYPE">&nbsp;&nbsp;❌&nbsp;&nbsp;</a></h2>
+		<form id="seladd" action="http://10.154.3.30:9990/nms/common/invokeRemoteController/invoke.do" onsubmit="return seladd()"  target="print_popup">
+			<div class="info" style="margin-top:20px"></div>			
+			<input type="text" name="serviceName" id="serviceName" value="ablityPlatformInf" hidden>
+			<input type="text" name="methodName" id="methodName" value="queryUserAccountInfo" hidden>
+			<input type="text" name="needTrans" id="needTrans" value="N" hidden>
+			<input type="text" id="addpar1" value='{"accNbr":"' hidden>			
+			<div class="user">宽带帐号：<input id="addpar2" autocomplete="off" placeholder="请输入宽带账号" type="text"  class="text"  /></div>			
+			<input type="text" id="addpar3" value='","resId":"9945272","cityId":"5","accountType":"2"}' hidden>		
+			<input type="text" name="param" id="addpar" hidden >           
+			<div class="button"><input type="submit" name="sub" class="submit" value="查询" /></div>
+		</form>
+	</div>
+	
+	<div id="qn" style="display:none;">
+		<h2>分光器信息查询<a class="close" id="cqn">&nbsp;&nbsp;❌&nbsp;&nbsp;</a></h2>
+		<form id="seladd" action="http://10.154.3.9:9000/rmw/datamanage/querymaintain/initExecuteQuery.action" onsubmit="return qn()"  target="print_popup">
+			<div class="info" style="margin-top:20px"></div>			
+			<input type="text" name="resClassName" id="resClassName" value="JK_POS" hidden>
+            <input type="text" name="resAttrListLength" id="resAttrListLength" value="13" hidden>
+            <input type="text" name="limit" id="limit" value='1' hidden>
+			<input type="text" name="wsql" id="wsql" hidden>
+			<div class="user">分光器：<input name="wsql2" id="wsql2" autocomplete="off" placeholder="请输入分光器名称" type="text"  class="text"  /></div>	
+            <input type="text" name="qQueryName" id="qQueryName" value='系统默认查询' hidden>   
+            <input type="text" name="queryObjId" id="queryObjId" value="300919" hidden >          
+			<input type="text" name="start" id="start" value="0" hidden > 
+			<div class="button"><input type="submit" name="sub" class="submit" value="查询" /></div>
+		</form>
+	</div>
+		
+	<script type="text/javascript">
+		function login(){
+			//alert("注意：登录信息为空部分功能可能无法使用！");
+			var url="http://10.154.3.30:9990/portal/logged?_=1700572386031";
+			var l=(screen.availWidth-800)/2;
+			var t=(screen.availHeight-600)/2;
+			window.open(url,'about:blank','width=800,height=600,top='+t+',left='+l+',status=yes,location=no');
+		}
+		
+		function tsfttr(){
+			var kdzh=$("#kdzh").val();			
+			if(kdzh==""){
+			    alert("请输入宽带账号！");
+			    return false;
+			}else{
+			    var url="http://10.154.3.10:7000/irms/gponIncreaseAction!fttrUpgradeUser.ilf?foreignlogin=true&useraccount=zy_rt&flowId=11111&kdAccount="+kdzh;
+			    //window.open(url);
+				var l=(screen.availWidth-400)/2;
+				var t=(screen.availHeight-150)/2;
+				window.open(url,'about:blank','width=400,height=150,top='+t+',left='+l+',status=yes,location=no');
+			    return true;
+			}
+		}
+		
+		$(document).ready(function() {
+                $('.singleSelect').select2();
+            });
+		$(document).ready(function(){ 
+			jQuery.fn.extend({ 
+				center:function(width,height){ 
+					return $(this).css("left", ($(window).width()-width)/2+$(window).scrollLeft()). 
+					css("top", ($(window).height()-height)/2+$(window).scrollTop()). 
+					css("width",width). 
+					css("height",height); 
+				} 
+			}); 
+		});  
+ 
+		$("#wzp").click(function(){
+			alert("请使用允许跨域浏览器访问否则无法使用！");
+			window.open('http://tj-ming.gitee.io/gongjuji/zzyGoogle.html');
+		});
+		
+		$("#clz").click(function(){
+			alert("请使用允许跨域浏览器访问否则无法使用！");
+			window.open('http://tj-ming.gitee.io/gongjuji/zxzsclz.html');
+		});
+		
+		$("#update").click(function (){ 
+			$("#iptvpar2").val('');//清空数据
+			$("#iptvpar4").val('');//清空数据
+			$("#login").show().center(350,250);//展现修改框 
+		}); 		
+
+		$("#updatestart").click(function (){
+			$("#qrpass").val('');//清空数据
+			$("#zsstarts").show().center(350,250);//展现修改框 
+		}); 				
+		
+		$("#cupiptv").click(function (){ 
+			$("#iptvpar2").val('');//清空数据
+			$("#iptvpar4").val('');//清空数据
+			$("#login").css('display','none');//关闭修改框 
+		});
+		
+		$("#nosta").click(function (){
+			$("#qrpass").val('');//清空数据
+			$("#zsstarts").css('display','none');//关闭修改框 
+		});
+		
+		$("#add").click(function (){ 
+			$("#addpar2").val('');//清空数据
+			$("#CONNECT_TYPE").show().center(350,250);//展现查询框
+		}); 
+		
+		$("#cCONNECT_TYPE").click(function (){ 
+			$("#addpar2").val('');//清空数据
+			$("#CONNECT_TYPE").css('display','none');//关闭查询框
+		});
+		
+		$("#QueryName").click(function (){ 
+			$("#wsql2").val('');//清空数据
+			$("#qn").show().center(350,250);//展现查询框
+		}); 
+		
+		$("#cqn").click(function (){ 
+			$("#wsql2").val('');//清空数据
+			$("#qn").css('display','none');;//关闭查询框
+		});
+		
+	  copyInnerTextOfCell = (event) => {
+		$("#mar").remove();
+		let innerText = event.target.innerText;
+		var myTagContent = document.createElement("input");
+		document.body.appendChild(myTagContent);
+		myTagContent.value = innerText;
+		myTagContent.select();
+		document.execCommand("copy");
+		myTagContent.remove();
+		$("#marquee").append('<marquee style="width:250px;color:burlywood;font-size:22px;" id="mar" >'+"已复制："+innerText+'</marquee>');
+		}
+	
+        function test(){
+            var alt=$("#par2").val();
+            if(alt==""){
+                alert("请正确宽带账号！");
+                return false;
+            }else{
+                let p1=$("#par1").val();
+                let p2=$("#par2").val();
+                let p3=$("#par3").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;
+                $('#param1').val(param);
+				//$("[name='param1']").attr("value",param);
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;
+            }
+        }
+		
+        function test2(){			
+            var alt=$("#par22").val();
+            if(alt==""){
+                alert("请输入固话号码！");
+                return false;
+            }else{
+                let p1=$("#par11").val();
+                let p2=$("#par22").val();
+                let p3=$("#par33").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;
+                $('#param2').val(param);
+				//$("[name='param2']").attr("value",param);
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;
+            }
+        }
+		
+		function test3(){			
+            var alt=$("#par222").val();
+            if(alt==""){
+                alert("请输入固话号码！");
+                return false;
+            }else{
+                let p1=$("#par111").val();
+                let p2=$("#par222").val();
+                let p3=$("#par333").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;
+                $('#param3').val(param);
+				//$("[name='param2']").attr("value",param);
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;
+            }
+        }
+		
+		function test4(){			
+            var alt=$("#m2").val();
+            if(alt==""){
+                alert("请输入需要查询的号码！");
+                return false;
+            }else{
+                let p1=$("#m1").val();
+                let p2=$("#m2").val();
+                let p3=$("#m3").val();
+				let p4=$("#m4").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3+p2+p4;
+                $('#param4').val(param);
+				//$("[name='param2']").attr("value",param);
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;
+            }
+        }
+		
+		function cjcs(){
+				alert('显示"description":"成功"则为加载登录信息成功');
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+		}
+		
+		function test5(){			
+            var alt=$("#q2").val();
+            if(alt==""){
+                alert("请输入需要查询的宽带账号！");
+                return false;
+            }else{
+                let p1=$("#q1").val();
+                let p2=$("#q2").val();
+                let p3=$("#q3").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#param5').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1200)/2;
+				var t=(screen.availHeight-800)/2;
+				window.open('about:blank','print_popup','width=1200,height=800,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+		
+		function test6(){			
+            var alt=$("#m22").val();
+            if(alt==""){
+                alert("请输入需要解绑的IPTV账号！");
+                return false;
+            }else{
+                let p1=$("#m11").val();
+                let p2=$("#m22").val();
+                let p3=$("#m33").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#param44').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+	
+		function test7(){			
+            var alt=$("#m222").val();
+            if(alt==""){
+                alert("请输入需要查询的IPTV账号！");
+                return false;
+            }else{
+                let p1=$("#m111").val();
+                let p2=$("#m222").val();
+                let p3=$("#m333").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#param444').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+		
+		function test8(){			
+            var alt=$("#m2222").val();
+            if(alt==""){
+                alert("请输入需要查询的IPTV账号！");
+                return false;
+            }else{
+                let p1=$("#m1111").val();
+                let p2=$("#m2222").val();
+                let p3=$("#m3333").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#param4444').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+		
+		function test9(){			
+            var alt=$("#m22222").val();
+            if(alt==""){
+                alert("请输入手机号码！");
+                return false;
+            }else{
+                let p1=$("#m11111").val();
+                let p2=$("#m22222").val();
+                let p3=$("#m33333").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#param44444').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1200)/2;
+				var t=(screen.availHeight-800)/2;
+				window.open('about:blank','print_popup','width=1200,height=800,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+		
+		function test10(){			
+            var alt=$("#ottpar2").val();
+            if(alt==""){
+                alert("请输入手机号码！");
+                return false;
+            }else{
+                let p1=$("#ottpar1").val();
+                let p2=$("#ottpar2").val();
+                let p3=$("#ottpar3").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#ottpar4').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1200)/2;
+				var t=(screen.availHeight-800)/2;
+				window.open('about:blank','print_popup','width=1200,height=800,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+		
+		function k(){			
+            var alt=$("#k2").val();
+            if(alt==""){
+                alert("请输入宽带账号！");
+                return false;
+            }else{
+                let p1=$("#k1").val();
+                let p2=$("#k2").val();
+                let p3=$("#k3").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+                let param=p1+losespace+p3;  
+                $('#k4').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();	
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;				 
+            }			
+        }
+		
+		function iptv(){
+		    var alt=$("#iptvpar2").val();
+		    var alt2=$("#iptvpar4").val();
+		    if(alt==""){
+		        alert("请输入需要修改的IPTV账号！");
+		        return false;
+		    }else if(alt2.length!="6"){
+				alert("请输入6位需要修改的iptv密码！");
+				return false;
+			}else{
+				    let p1=$("#iptvpar1").val();
+				    let p2=$("#iptvpar2").val();
+				    let p3=$("#iptvpar3").val();
+					let p4=$("#iptvpar4").val();
+					let p5=$("#iptvpar5").val();
+					let losespace = p2.replace(/\s*/g,"");//去所有空格
+					let losespace2 = p4.replace(/\s*/g,"");//去所有空格
+				    let param=p1+losespace+p3+losespace2+p5;  
+				    $('#iptvpar').val(param);
+					//$("[name='param2']").attr("value",param);	
+					$("#login").css('display','none');//关闭修改框 
+					//document.getElementById("r").style.display = "block";
+					//document.getElementById("aa").click();	
+					var l=(screen.availWidth-1080)/2;
+					var t=(screen.availHeight-300)/2;
+					window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');					
+				    return true;				 
+			}
+		}
+		
+		function sta(){
+		    var alt=$("#startpar2").val();
+		    var alt2=$("#startpar4").val();
+			var alt3=$("#qrpass").val();
+		    if(alt==""){
+		        alert("请选择状态!");
+		        return false;
+		    }else if(alt2==""){
+				alert("请选择工号!");
+				return false;
+			}else if(alt3!=="sjzc666"){
+				alert("您未输入密码或密码有误!");
+				return false;
+			}else{
+				    let p1=$("#startpar1").val();
+				    let p2=$("#startpar2").val();
+				    let p3=$("#startpar3").val();
+					let p4=$("#startpar4").val();
+					let p5=$("#startpar5").val();
+					let losespace = p2.replace(/\s*/g,"");//去所有空格
+					let losespace2 = p4.replace(/\s*/g,"");//去所有空格
+				    let param=p1+losespace+p3+losespace2+p5;  
+				    $('#startpar').val(param);
+					//$("[name='param2']").attr("value",param);	
+					$("#zsstarts").css('display','none');//关闭修改框 
+					//document.getElementById("r").style.display = "block";
+					//document.getElementById("aa").click();	
+					var l=(screen.availWidth-1080)/2;
+					var t=(screen.availHeight-300)/2;
+					window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');					
+				    return true;				 
+			}
+		}
+		
+		function seladd(){
+		    var alt=$("#addpar2").val();
+		    if(alt==""){
+		        alert("请输入宽带账号！");
+		        return false;
+			}else{
+				    let p1=$("#addpar1").val();
+				    let p2=$("#addpar2").val();
+				    let p3=$("#addpar3").val();
+					let losespace = p2.replace(/\s*/g,"");//去所有空格
+				    let param=p1+losespace+p3;  
+				    $('#addpar').val(param);
+					$("#CONNECT_TYPE").css('display','none');//关闭查询框 
+					var l=(screen.availWidth-1080)/2;
+					var t=(screen.availHeight-300)/2;
+					window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');					
+				    return true;				 
+			}
+		}
+		
+		function qn(){
+		    var alt=$("#wsql2").val();
+		    if(alt==""){
+                alert("请输入分光器！");
+                return false;
+            }else{
+				let p1="zh_label = '";
+                let p2=$("#wsql2").val();  
+				let losespace = p2.replace(/\s*/g,"");//去所有空格				
+                let p3="'";
+                let param=p1+losespace+p3;
+                $('#wsql').val(param);
+				$("#qn").css('display','none');//关闭查询框 
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');
+                return true;
+            }
+		}
+		
+		function synchronization(){
+		    var alt=$("#synchronization2").val();
+		    if(alt==""){
+		        alert("请输入IPTV账号！");
+		        return false;
+		    }else{
+		        let p1=$("#synchronization1").val();
+		        let p2=$("#synchronization2").val();
+		        let p3=$("#synchronization3").val();
+				let losespace = p2.replace(/\s*/g,"");//去所有空格
+		        let param=p1+losespace+p3;  
+		        $('#synchronization4').val(param);
+				//$("[name='param2']").attr("value",param);	
+				//document.getElementById("r").style.display = "block";
+				//document.getElementById("aa").click();		
+				var l=(screen.availWidth-1080)/2;
+				var t=(screen.availHeight-300)/2;
+				window.open('about:blank','print_popup','width=1080,height=300,top='+t+',left='+l+',status=yes,location=no');				
+		        return true;				 
+		    }			
+		}
+		
+		function res(){
+			$('.res').css('color','#03a9f4');  //默认值
+			setTimeout(" $('.res').css('color','burlywood')",100); //第一次闪烁
+			setTimeout( "$('.res').css('color','#fF0000')",200); //第二次闪烁
+		};
+		window.setInterval(res, 400); //让index 多久循环一次 			
+		
+	</script>
+    
+</body>
+</html>
