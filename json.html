@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="https://www.10086.cn/favicon.ico" type="image/x-icon">
+	<title>格式化json工具</title>
+</head>
+<style>
+	.center {
+	  display: grid;
+	  place-items: center; /* 水平垂直居中 */
+	}
+	span{
+		font-size:22px;
+	}
+</style>
+<body >
+ 
+<div class="center">
+	<span>需JSON格式化文本</span>
+	<textarea rows="15" cols="200" id="inputJson" style="width:60%;height:300px;color:rgb(78,198,91);font-size:20px"" >请输入需要格式化的JSON</textarea>
+	<!--<center>
+		<input type="button" onclick="parseJson(false)" value="JSON格式化">
+		<input type="button" onclick="parseJson(true)" value="压缩">
+		<input type="button" onclick="copy()" value="复制代码">
+	</center>-->
+	<span>JSON格式化结果</span>
+	<pre id="result" style="border:black 1px solid ; margin:5px 5px auto 0;width:60.2%;color:rgb(146,39,143);font-size:20px">
+	 
+	</pre>
+	 
+</div>
+</body>
+ 
+<script>
+window.onload = function() {
+  var textarea = document.getElementById('inputJson');
+  var placeholderText = textarea.value;
+  
+  textarea.addEventListener('input', function() {
+    if (this.value === placeholderText) {
+      this.value = '';
+      this.classList.remove('placeholder');
+    } else {
+      this.classList.remove('placeholder');
+    }
+  });
+  
+  textarea.addEventListener('focus', function() {
+    if (this.value === placeholderText) {
+      this.value = '';
+    }
+  });
+  
+  textarea.addEventListener('blur', function() {
+    if (this.value === '') {
+      this.value = placeholderText;
+      this.classList.add('placeholder');
+    }
+  });
+  
+  // 初始化时添加placeholder类
+  if (textarea.value === placeholderText) {
+    textarea.classList.add('placeholder');
+  }
+};
+function copy() {
+ 
+   selectText("result")
+   document.execCommand("Copy"); // 执行浏览器复制命令
+   alert("已复制好，可贴粘");
+}
+ 
+function selectText(element) {
+        var text = document.getElementById(element);
+        if (document.body.createTextRange) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(text);
+            range.select();
+        } else if (window.getSelection) {
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(text);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        } else {
+            alert("none");
+        }
+    }
+ 
+function parseJson(isCompress) {
+  var json = document.getElementById("inputJson").value;
+  if(isCompress){
+    document.getElementById("result").innerHTML=format(json,true)
+  }
+  else{
+    document.getElementById("result").innerHTML=format(json)
+ }
+}
+ 
+function format(txt,compress/*是否为压缩模式*/){/* 格式化JSON源码(对象转换为JSON文本) */  
+        var indentChar = '    ';   
+        if(/^\s*$/.test(txt)){   
+            alert('数据为空,无法格式化! ');   
+            return;   
+        }   
+        try{var data=eval('('+txt+')');}   
+        catch(e){   
+            alert('数据源语法错误,格式化失败! 错误信息: '+e.description,'err');   
+            return;   
+        };   
+        var draw=[],last=false,This=this,line=compress?'':'\n',nodeCount=0,maxDepth=0;   
+           
+        var notify=function(name,value,isLast,indent/*缩进*/,formObj){   
+            nodeCount++;/*节点计数*/  
+            for (var i=0,tab='';i<indent;i++ )tab+=indentChar;/* 缩进HTML */  
+            tab=compress?'':tab;/*压缩模式忽略缩进*/  
+            maxDepth=++indent;/*缩进递增并记录*/  
+            if(value&&value.constructor==Array){/*处理数组*/  
+                draw.push(tab+(formObj?('"'+name+'":'):'')+'['+line);/*缩进'[' 然后换行*/  
+                for (var i=0;i<value.length;i++)   
+                    notify(i,value[i],i==value.length-1,indent,false);   
+                draw.push(tab+']'+(isLast?line:(','+line)));/*缩进']'换行,若非尾元素则添加逗号*/  
+            }else   if(value&&typeof value=='object'){/*处理对象*/  
+                    draw.push(tab+(formObj?('"'+name+'":'):'')+'{'+line);/*缩进'{' 然后换行*/  
+                    var len=0,i=0;   
+                    for(var key in value)len++;   
+                    for(var key in value)notify(key,value[key],++i==len,indent,true);   
+                    draw.push(tab+'}'+(isLast?line:(','+line)));/*缩进'}'换行,若非尾元素则添加逗号*/  
+                }else{   
+                        if(typeof value=='string')value='"'+value+'"';   
+                        draw.push(tab+(formObj?('"'+name+'":'):'')+value+(isLast?'':',')+line);   
+                };   
+        };   
+        var isLast=true,indent=0;   
+        notify('',data,isLast,indent,false);   
+        return draw.join('');   
+    } 
+ 
+document.getElementById('inputJson').addEventListener('input', function() {
+    parseJson(false)
+});
+ 
+</script>
+</html>
