@@ -18,19 +18,26 @@
 	span{
 		font-size:22px;
 	}
+	pre{
+		white-space:pre-wrap; /* css3.0 */
+		white-space:-moz-pre-wrap; /* Firefox */
+		white-space:-pre-wrap; /* Opera 4-6 */
+		white-space:-o-pre-wrap; /* Opera 7 */
+		word-wrap:break-word; /* Internet Explorer 5.5+ */
+	}
 </style>
 <body >
  
 <div class="center">
 	<span>需JSON格式化文本</span>
-	<textarea rows="15" cols="200" id="inputJson" style="width:60%;height:300px;color:rgb(78,198,91);font-size:20px"" >请输入需要格式化的JSON</textarea>
+	<textarea rows="15" cols="200" id="inputJson" style="width:1200px;height:300px;color:rgb(78,198,91);font-size:20px"" >请输入需要格式化的JSON</textarea>
 	<!--<center>
 		<input type="button" onclick="parseJson(false)" value="JSON格式化">
 		<input type="button" onclick="parseJson(true)" value="压缩">
 		<input type="button" onclick="copy()" value="复制代码">
 	</center>-->
 	<span>JSON格式化结果</span>
-	<pre id="result" style="border:black 1px solid ; margin:5px 5px auto 0;width:60.2%;color:rgb(146,39,143);font-size:20px">
+	<pre id="result" style="border:black 1px solid ; margin:5px 5px auto 0;width:1200px;color:rgb(146,39,143);font-size:20px">
 	 
 	</pre>
 	 
